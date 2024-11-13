@@ -57,4 +57,21 @@ workflows:
 
         # Configuration related to App Store (optional)
         # Note: This action is performed during post-processing.
-        #submit_to_app_store: false
+        #submit_to_app_store: false  
+  ios-native-kozic:
+    environment:
+      vars:
+        BUNDLE_ID: "io.codemagic.sample.iosnative"
+        XCODE_WORKSPACE: "CodemagicSample.xcworkspace"
+        XCODE_SCHEME: "CodemagicSample"
+    scripts:
+      - name: Build ipa for distribution
+        script: | 
+          xcode-project build-ipa \
+            --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
