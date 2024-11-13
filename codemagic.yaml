@@ -6,9 +6,9 @@ workflows:
     integrations:
       app_store_connect: codemagic
     environment:
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: io.codemagic.sample.iosnative
+      #ios_signing:
+        #distribution_type: app_store
+        #bundle_identifier: io.codemagic.sample.iosnative
       vars:
         BUNDLE_ID: "io.codemagic.sample.iosnative"
         XCODE_WORKSPACE: "CodemagicSample.xcworkspace" # <-- Put the name of your Xcode workspace here
@@ -22,11 +22,11 @@ workflows:
           pod install
       - name: Set up provisioning profiles settings on Xcode project
         script: xcode-project use-profiles
-      - name: Increment build number
-        script: | 
-          cd $CM_BUILD_DIR
-          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID")
-          agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
+      #- name: Increment build number
+        #script: | 
+          #cd $CM_BUILD_DIR
+          #LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID")
+          #agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
       - name: Build ipa for distribution
         script: | 
           xcode-project build-ipa \
@@ -45,8 +45,8 @@ workflows:
         notify:
           success: true
           failure: false
-      app_store_connect:
-        auth: integration
+      #app_store_connect:
+        #auth: integration
 
         # Configuration related to TestFlight (optional)
         # Note: This action is performed during post-processing.
