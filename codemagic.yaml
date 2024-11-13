@@ -11,7 +11,7 @@ workflows:
         #bundle_identifier: io.codemagic.sample.iosnative
       vars:
         BUNDLE_ID: "io.codemagic.sample.iosnative"
-        XCODE_WORKSPACE: "CodemagicSample.xcworkspace" # <-- Put the name of your Xcode workspace here
+        XCODE_WORKSPACE: "CodemagicSample.xcodeproj" # <-- Put the name of your Xcode workspace here
         XCODE_SCHEME: "CodemagicSample" # <-- Put the name of your Xcode scheme here
         APP_STORE_APPLE_ID: 1555555551
       xcode: latest
@@ -30,7 +30,7 @@ workflows:
       - name: Build ipa for distribution
         script: | 
           xcode-project build-ipa \
-            --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
+            --project "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
             --scheme "$XCODE_SCHEME"
     artifacts:
       - build/ios/ipa/*.ipa
