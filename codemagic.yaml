@@ -58,6 +58,7 @@ workflows:
         # Configuration related to App Store (optional)
         # Note: This action is performed during post-processing.
         #submit_to_app_store: false  
+workflows:
   ios-native-kozic:
     working_directory: firefox-ios
     environment:
@@ -69,10 +70,18 @@ workflows:
     scripts:
       - name: Build ipa for distribution
         script: | 
-          –export-options-plist="$CM_BUILD_DIR/firefox-ios/export_options.plist"
           xcode-project build-ipa \
             --workspace "$CM_BUILD_DIR/firefox-ios/$XCODE_WORKSPACE" \
             --scheme "$XCODE_SCHEME"
+          - name: Build the .app
+        script: | 
+          # build using workspace
+          xcodebuild build \
+            -workspace "$CM_BUILD_DIR/firefox-ios/$XCODE_WORKSPACE" \
+            -scheme "$XCODE_SCHEME" \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
