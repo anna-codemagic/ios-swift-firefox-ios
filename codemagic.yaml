@@ -70,11 +70,6 @@ workflows:
     scripts:
       - name: Build ipa for distribution
         script: | 
-          xcode-project build-ipa \
-            --workspace "$CM_BUILD_DIR/firefox-ios/$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
-          - name: Build the .app
-        script: | 
           # build using workspace
           xcodebuild build \
             -workspace "$CM_BUILD_DIR/firefox-ios/$XCODE_WORKSPACE" \
