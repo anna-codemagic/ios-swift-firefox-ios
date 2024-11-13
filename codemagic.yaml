@@ -12,8 +12,8 @@ workflows:
       vars:
         BUNDLE_ID: "io.codemagic.sample.iosnative"
         XCODE_WORKSPACE: "Client.xcodeworkspace" # <-- Put the name of your Xcode workspace here
-        XCODE_SCHEME: "CodemagicSample" # <-- Put the name of your Xcode scheme here
-        APP_STORE_APPLE_ID: 1555555551
+        XCODE_SCHEME: "Client" #"CodemagicSample" # <-- Put the name of your Xcode scheme here
+        #APP_STORE_APPLE_ID: 1555555551
       xcode: latest
       cocoapods: default
     scripts:
