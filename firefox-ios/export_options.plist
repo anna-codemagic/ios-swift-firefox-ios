@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>method</key>
+    <string>development</string> <!-- Use 'development' for testing -->
+    <key>teamID</key>
+    <string>1234567891</string> <!-- Replace with your actual team ID -->
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>io.codemagic.sample.iosnative</key> <!-- Replace with your apps bundle identifier -->
+        <string>Your_Provisioning_Profile_Name</string> <!-- Replace with your provisioning profile name -->
+    </dict>
+</dict>
+</plist>
